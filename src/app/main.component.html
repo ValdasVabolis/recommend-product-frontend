@@ -1,0 +1,38 @@
+<div class="content" role="main">
+    <div class="my-form">
+        <h2>SEB Product Recommender</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="selectField">Select your age group</label>
+                <select id="selectField" name="selectField" class="form-control" [(ngModel)]="selectedValue">
+                    <option value="0-17">0-17</option>
+                    <option value="18-64">18-64</option>
+                    <option value="65+">65+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="checkbox">Are you a student?</label>
+                <input type="checkbox" id="checkbox" name="checkbox" [(ngModel)]="isChecked">
+            </div>
+
+            <div class="form-group">
+                <label for="secondSelectField">Select your income bracket</label>
+                <select id="secondSelectField" name="secondSelectField" class="form-control" [(ngModel)]="secondSelectedValue">
+                    <option value="0">0</option>
+                    <option value="1-12000">1-12000</option>
+                    <option value="12001-4000">12001-40000</option>
+                    <option value="40001=">40001+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="product-offer-container">
+        <h2>Current recommendations</h2>
+        <div *ngFor="let offer of productOffers" class="string-item">{{ offer }}</div>
+    </div>
+</div>
