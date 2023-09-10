@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+
+interface ProductOffer {
+  name: string;
+  minAge: number;
+  minIncome: number;
+  forStudent: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -8,31 +15,27 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'recommend-product-app';
-  selectedValue: string = '0-17';
+  selectedAge: string = '0-17';
   isChecked: boolean = false;
-  secondSelectedValue: string = '0';
-  productOffers: string[] = [];
+  selectedIncome: string = '0';
+  productOffers: ProductOffer[] = [];
 
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    console.log('Form submitted');
-    console.log('Select Field:', this.selectedValue);
-    console.log('Checkbox:', this.isChecked);
-    console.log('Second Select Field:', this.secondSelectedValue);
-
     const params = new HttpParams()
-      .set('age', this.selectedValue)
+      .set('age', this.selectedAge)
       .set('isStudent', this.isChecked.toString())
-      .set('income', this.secondSelectedValue);
+      .set('income', this.selectedIncome);
 
-    // Make the API GET request
-    this.http.get<string[]>('http://localhost:8080/api/products/recommend', { params })
+    const headers = new HttpHeaders()
+      .set('Authorization', "Basic " + btoa("valdas:abc123"));
+
+    this.http.get<ProductOffer[]>('http://localhost:8080/api/products/recommend', { params, headers })
       .subscribe(
-        (data: string[]) => {
+        (data: ProductOffer[]) => {
           console.log(data);
           this.productOffers = data;
-          console.log('API Response:', this.productOffers);
         },
         (error: any) => {
           console.error('API Error:', error);

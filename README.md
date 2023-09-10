@@ -1,5 +1,7 @@
 # RecommendProductApp
 
+Navigate to [recommend-product-backend](https://github.com/ValdasVabolis/recommend-product-backend) for backend portion of the app.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
 
 ## Development server

@@ -4,7 +4,7 @@
         <form (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="selectField">Select your age group</label>
-                <select id="selectField" name="selectField" class="form-control" [(ngModel)]="selectedValue">
+                <select id="selectField" name="selectField" class="form-control" [(ngModel)]="selectedAge">
                     <option value="0-17">0-17</option>
                     <option value="18-64">18-64</option>
                     <option value="65+">65+</option>
@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="secondSelectField">Select your income bracket</label>
-                <select id="secondSelectField" name="secondSelectField" class="form-control" [(ngModel)]="secondSelectedValue">
+                <select id="secondSelectField" name="secondSelectField" class="form-control" [(ngModel)]="selectedIncome">
                     <option value="0">0</option>
                     <option value="1-12000">1-12000</option>
                     <option value="12001-4000">12001-40000</option>
@@ -33,6 +33,8 @@
     </div>
     <div class="product-offer-container">
         <h2>Current recommendations</h2>
-        <div *ngFor="let offer of productOffers" class="string-item">{{ offer }}</div>
+        <div *ngFor="let offer of productOffers" class="string-item">
+            <div>{{ offer.name }}</div>
+        </div>
     </div>
 </div>
